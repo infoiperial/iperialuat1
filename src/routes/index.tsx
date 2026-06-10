@@ -70,7 +70,7 @@ function HomePage() {
             <img
               src={logoImg}
               alt="Iperial logo"
-              className="h-[72px] w-auto max-h-full object-contain"
+              className="h-[220px] w-auto max-h-full object-contain"
             />
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
