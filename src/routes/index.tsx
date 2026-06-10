@@ -14,13 +14,16 @@ import {
   CheckCircle2,
   MapPin,
   Phone,
+  Search,
+  Palette,
+  Share2,
 } from "lucide-react";
 import heroImg from "@/assets/hero-tech.jpg";
 import infraImg from "@/assets/infrastructure.jpg";
 import cloudImg from "@/assets/cloud.jpg";
 import supportImg from "@/assets/support.jpg";
-
-export const Route = createFileRoute("/")({
+import marketingImg from "@/assets/digital-marketing.jpg";
+import logoImg from "@/assets/logo.png";
   component: HomePage,
 });
 
