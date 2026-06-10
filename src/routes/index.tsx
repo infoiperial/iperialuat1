@@ -182,7 +182,7 @@ function HomePage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.46_0.18_248)]">What we do</p>
             <h2 className="mt-3 font-[Space_Grotesk] text-4xl font-bold tracking-tight md:text-5xl">Our services</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              End-to-end technology services across infrastructure, cloud and support — delivered with care.
+              End-to-end technology and marketing services across infrastructure, cloud, support and digital growth — delivered with care.
             </p>
           </div>
 
@@ -215,6 +215,17 @@ function HomePage() {
             image={supportImg}
             imageAlt="IT support engineer at workstation"
             items={supportServices}
+          />
+
+          {/* Digital Marketing */}
+          <ServiceBlock
+            number="04"
+            tag="Digital Marketing"
+            title="Grow your presence online."
+            image={marketingImg}
+            imageAlt="Digital marketing analytics and creative tools"
+            items={digitalMarketingServices}
+            reverse
           />
         </div>
       </section>
@@ -289,11 +300,15 @@ function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border bg-[oklch(0.13_0.03_255)] py-12 text-white/60">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
-          <div className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-[oklch(0.55_0.2_245)] to-[oklch(0.78_0.16_220)]">
-              <span className="font-[Space_Grotesk] text-sm font-bold text-white">i</span>
-            </div>
-            <span className="font-[Space_Grotesk] text-base font-bold tracking-tight text-white">IPERIAL</span>
+          <div className="flex items-center gap-3">
+            <img
+              src={logoImg}
+              alt="Iperial logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-md object-cover"
+            />
+            <span className="font-['Audiowide'] text-base font-bold tracking-tight text-white">IPERIAL</span>
           </div>
           <p className="text-sm">© {new Date().getFullYear()} Iperial Technology Solutions. All rights reserved.</p>
           <a href="mailto:info@iperial.com" className="text-sm transition hover:text-white">info@iperial.com</a>
