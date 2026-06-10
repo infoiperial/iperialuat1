@@ -14,11 +14,16 @@ import {
   CheckCircle2,
   MapPin,
   Phone,
+  Search,
+  Palette,
+  Share2,
 } from "lucide-react";
 import heroImg from "@/assets/hero-tech.jpg";
 import infraImg from "@/assets/infrastructure.jpg";
 import cloudImg from "@/assets/cloud.jpg";
 import supportImg from "@/assets/support.jpg";
+import marketingImg from "@/assets/digital-marketing.jpg";
+import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -47,17 +52,27 @@ const supportServices = [
   { icon: Mail, title: "Email & Comms Support", desc: "Email setup, migration and unified communications assistance." },
 ];
 
+const digitalMarketingServices = [
+  { icon: Search, title: "Site SEO", desc: "On-page and technical SEO audits, keyword strategy and optimisation to improve search visibility and drive organic traffic." },
+  { icon: Palette, title: "Graphics & Video", desc: "Professional brand assets, marketing graphics and promotional video production for digital campaigns." },
+  { icon: Share2, title: "Socials", desc: "Social media management, content scheduling and audience engagement across all major platforms." },
+];
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
       {/* Nav */}
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[oklch(0.13_0.03_255/0.7)] backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-md bg-gradient-to-br from-[oklch(0.55_0.2_245)] to-[oklch(0.78_0.16_220)] shadow-[var(--shadow-elegant)]">
-              <span className="font-[Space_Grotesk] text-lg font-bold text-white">i</span>
-            </div>
-            <span className="font-[Space_Grotesk] text-xl font-bold tracking-tight text-white">IPERIAL</span>
+          <a href="#top" className="flex items-center gap-3">
+            <img
+              src={logoImg}
+              alt="Iperial logo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-md object-cover"
+            />
+            <span className="font-['Audiowide'] text-xl font-bold tracking-tight text-white">IPERIAL</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
             <a href="#services" className="transition hover:text-white">Services</a>
@@ -167,7 +182,7 @@ function HomePage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.46_0.18_248)]">What we do</p>
             <h2 className="mt-3 font-[Space_Grotesk] text-4xl font-bold tracking-tight md:text-5xl">Our services</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              End-to-end technology services across infrastructure, cloud and support — delivered with care.
+              End-to-end technology and marketing services across infrastructure, cloud, support and digital growth — delivered with care.
             </p>
           </div>
 
@@ -200,6 +215,17 @@ function HomePage() {
             image={supportImg}
             imageAlt="IT support engineer at workstation"
             items={supportServices}
+          />
+
+          {/* Digital Marketing */}
+          <ServiceBlock
+            number="04"
+            tag="Digital Marketing"
+            title="Grow your presence online."
+            image={marketingImg}
+            imageAlt="Digital marketing analytics and creative tools"
+            items={digitalMarketingServices}
+            reverse
           />
         </div>
       </section>
@@ -274,11 +300,15 @@ function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border bg-[oklch(0.13_0.03_255)] py-12 text-white/60">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
-          <div className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-[oklch(0.55_0.2_245)] to-[oklch(0.78_0.16_220)]">
-              <span className="font-[Space_Grotesk] text-sm font-bold text-white">i</span>
-            </div>
-            <span className="font-[Space_Grotesk] text-base font-bold tracking-tight text-white">IPERIAL</span>
+          <div className="flex items-center gap-3">
+            <img
+              src={logoImg}
+              alt="Iperial logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-md object-cover"
+            />
+            <span className="font-['Audiowide'] text-base font-bold tracking-tight text-white">IPERIAL</span>
           </div>
           <p className="text-sm">© {new Date().getFullYear()} Iperial Technology Solutions. All rights reserved.</p>
           <a href="mailto:info@iperial.com" className="text-sm transition hover:text-white">info@iperial.com</a>
