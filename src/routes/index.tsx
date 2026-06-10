@@ -23,7 +23,8 @@ import infraImg from "@/assets/infrastructure.jpg";
 import cloudImg from "@/assets/cloud.jpg";
 import supportImg from "@/assets/support.jpg";
 import marketingImg from "@/assets/digital-marketing.jpg";
-import logoImg from "@/assets/logo.png";
+import logoAsset from "@/assets/iperial-logo.png.asset.json";
+const logoImg = logoAsset.url;
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -64,15 +65,12 @@ function HomePage() {
       {/* Nav */}
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[oklch(0.13_0.03_255/0.7)] backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-3">
+          <a href="#top" className="flex items-center">
             <img
               src={logoImg}
               alt="Iperial logo"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-md object-cover"
+              className="h-9 w-auto object-contain"
             />
-            <span className="font-['Audiowide'] text-xl font-bold tracking-tight text-white">IPERIAL</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
             <a href="#services" className="transition hover:text-white">Services</a>
@@ -300,15 +298,12 @@ function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border bg-[oklch(0.13_0.03_255)] py-12 text-white/60">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <img
               src={logoImg}
               alt="Iperial logo"
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-md object-cover"
+              className="h-8 w-auto object-contain"
             />
-            <span className="font-['Audiowide'] text-base font-bold tracking-tight text-white">IPERIAL</span>
           </div>
           <p className="text-sm">© {new Date().getFullYear()} Iperial Technology Solutions. All rights reserved.</p>
           <a href="mailto:info@iperial.com" className="text-sm transition hover:text-white">info@iperial.com</a>
