@@ -24,6 +24,8 @@ import cloudImg from "@/assets/cloud.jpg";
 import supportImg from "@/assets/support.jpg";
 import marketingImg from "@/assets/digital-marketing.jpg";
 import logoImg from "@/assets/logo.png";
+
+export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
