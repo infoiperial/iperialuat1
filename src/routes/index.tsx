@@ -58,11 +58,15 @@ function HomePage() {
       {/* Nav */}
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[oklch(0.13_0.03_255/0.7)] backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-md bg-gradient-to-br from-[oklch(0.55_0.2_245)] to-[oklch(0.78_0.16_220)] shadow-[var(--shadow-elegant)]">
-              <span className="font-[Space_Grotesk] text-lg font-bold text-white">i</span>
-            </div>
-            <span className="font-[Space_Grotesk] text-xl font-bold tracking-tight text-white">IPERIAL</span>
+          <a href="#top" className="flex items-center gap-3">
+            <img
+              src={logoImg}
+              alt="Iperial logo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-md object-cover"
+            />
+            <span className="font-['Audiowide'] text-xl font-bold tracking-tight text-white">IPERIAL</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
             <a href="#services" className="transition hover:text-white">Services</a>
