@@ -52,6 +52,12 @@ const supportServices = [
   { icon: Mail, title: "Email & Comms Support", desc: "Email setup, migration and unified communications assistance." },
 ];
 
+const digitalMarketingServices = [
+  { icon: Search, title: "Site SEO", desc: "On-page and technical SEO audits, keyword strategy and optimisation to improve search visibility and drive organic traffic." },
+  { icon: Palette, title: "Graphics & Video", desc: "Professional brand assets, marketing graphics and promotional video production for digital campaigns." },
+  { icon: Share2, title: "Socials", desc: "Social media management, content scheduling and audience engagement across all major platforms." },
+];
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
