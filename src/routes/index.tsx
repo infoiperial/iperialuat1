@@ -69,7 +69,7 @@ function HomePage() {
             <img
               src={logoImg}
               alt="Iperial logo"
-              className="h-9 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
@@ -302,7 +302,7 @@ function HomePage() {
             <img
               src={logoImg}
               alt="Iperial logo"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
           </div>
           <p className="text-sm">© {new Date().getFullYear()} Iperial Technology Solutions. All rights reserved.</p>
