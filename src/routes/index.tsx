@@ -64,7 +64,7 @@ function HomePage() {
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
       {/* Nav */}
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[oklch(0.13_0.03_255/0.7)] backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <a href="#top" className="flex items-center">
             <img
               src={logoImg}
