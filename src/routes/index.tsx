@@ -297,13 +297,13 @@ function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-[oklch(0.13_0.03_255)] py-12 text-white/60">
+      <footer className="border-t border-border bg-[oklch(0.13_0.03_255)] py-16 text-white/60">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
           <div className="flex items-center">
             <img
               src={logoImg}
               alt="Iperial logo"
-              className="h-[72px] w-auto object-contain"
+              className="h-[220px] w-auto object-contain"
             />
           </div>
           <p className="text-sm">© {new Date().getFullYear()} Iperial Technology Solutions. All rights reserved.</p>
