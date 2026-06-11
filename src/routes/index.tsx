@@ -264,7 +264,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Contact / Form */}
       <section id="contact" className="relative isolate overflow-hidden bg-background py-28">
         <div className="mx-auto max-w-5xl px-6">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[oklch(0.2_0.07_252)] via-[oklch(0.3_0.12_245)] to-[oklch(0.55_0.18_230)] p-12 text-white shadow-[var(--shadow-elegant)] md:p-16">
@@ -277,21 +277,34 @@ function HomePage() {
               <p className="mt-4 max-w-xl text-lg text-white/80">
                 Free, no-obligation consultation. Tell us what's working — and what isn't — and we'll suggest the right next step.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="mailto:info@iperial.com"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[oklch(0.15_0.05_255)] shadow-lg transition hover:scale-[1.02]"
-                >
-                  Enquire Now <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
-                  href="mailto:info@iperial.com"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
-                >
-                  <Phone className="h-4 w-4" /> Book a call
-                </a>
-              </div>
             </div>
+          </div>
+
+          {/* Google Form Embed */}
+          <div className="mt-16 flex justify-center">
+            <div className="w-full max-w-[640px] overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)]">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdUySNpNL2CpsyMV3tcTNfeWcwp2GKz70DWA1v97aLhQtOGYQ/viewform?embedded=true"
+                width="640"
+                height="819"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                className="w-full"
+                title="Contact Iperial"
+              >
+                Loading…
+              </iframe>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
+            <a href="mailto:info@iperial.com" className="inline-flex items-center gap-2 transition hover:text-foreground">
+              <Mail className="h-4 w-4" /> info@iperial.com
+            </a>
+            <a href="tel:+441234567890" className="inline-flex items-center gap-2 transition hover:text-foreground">
+              <Phone className="h-4 w-4" /> Book a call
+            </a>
           </div>
         </div>
       </section>
