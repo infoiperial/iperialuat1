@@ -23,7 +23,9 @@ export default defineConfig({
     },
   },
   nitro: {
-    preset: "static",
+    // GitHub Actions explicitly sets NITRO_PRESET=static in the Pages workflow.
+    // Outside that workflow we still default to a static preset for self-hosted static builds.
+    preset: process.env.NITRO_PRESET || "static",
   },
   vite: {
     // GitHub Actions sets BASE_PATH=/<repo>/ for project sites. Defaults to "/"

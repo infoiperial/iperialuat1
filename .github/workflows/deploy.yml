@@ -38,13 +38,23 @@ jobs:
           # Pages serves project sites under /<repo>/. configure-pages exposes the
           # correct base path (e.g. "/my-repo/") via steps.pages.outputs.base_path.
           # For user/org sites (<user>.github.io) or custom domains it is "/".
+          NITRO_PRESET: static
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: bun run build
 
       - name: Prepare static output for GitHub Pages
         run: |
           set -euo pipefail
-          OUT=.output/public
+          rm -rf pages-dist
+          if [ -d .output/public ]; then
+            OUT=.output/public
+          elif [ -d dist/client ]; then
+            OUT=dist/client
+          else
+            echo "No static output directory found" >&2
+            ls -la . >&2
+            exit 1
+          fi
           # GitHub Pages won't serve underscore-prefixed paths without this.
           touch "$OUT/.nojekyll"
           # TanStack Start SPA mode emits the shell at _shell.html. Use it as
@@ -59,11 +69,23 @@ jobs:
             ls -la "$OUT" >&2
             exit 1
           fi
+          cat > "$OUT/sitemap.xml" <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+              <loc>${{ steps.pages.outputs.base_url }}/</loc>
+              <changefreq>weekly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          </urlset>
+          XML
+          mkdir -p pages-dist
+          cp -R "$OUT"/. pages-dist/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: pages-dist
 
   deploy:
     needs: build
