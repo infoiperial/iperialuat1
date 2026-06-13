@@ -9,21 +9,26 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // When this build runs INSIDE a Lovable sandbox (preview/publish), the wrapper
 // forces preset=cloudflare-module regardless of what we pass here.
 // When the build runs OUTSIDE Lovable (e.g. GitHub Actions for GitHub Pages),
-// this `nitro` block is honored and we produce a fully static site under
-// `.output/public/`, including `.nojekyll` and a `404.html` fallback.
+// the `nitro.preset = "static"` below is honored and Nitro emits a fully
+// static site under `.output/public/`. We then run TanStack Start in SPA mode
+// (`spa.enabled = true`) so a single shell HTML handles all client routes —
+// the workflow copies it to `index.html` + `404.html` for GitHub Pages.
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    // SPA shell — renders the router pending fallback into a single static HTML file.
+    spa: {
+      enabled: true,
+    },
   },
   nitro: {
-    preset: "github_pages",
+    preset: "static",
   },
   vite: {
-    // Allow GitHub Actions to set BASE_PATH=/<repo-name>/ when deploying a
-    // project site (https://<user>.github.io/<repo>/). Defaults to "/" so
-    // custom domains and user/org sites (<user>.github.io) work out of the box.
+    // GitHub Actions sets BASE_PATH=/<repo>/ for project sites. Defaults to "/"
+    // so user/org sites and custom domains work out of the box. This value is
+    // also exposed to the router via import.meta.env.BASE_URL (see src/router.tsx).
     base: process.env.BASE_PATH || "/",
   },
 });
