@@ -45,6 +45,7 @@ jobs:
       - name: Prepare static output for GitHub Pages
         run: |
           set -euo pipefail
+          rm -rf pages-dist
           if [ -d .output/public ]; then
             OUT=.output/public
           elif [ -d dist/client ]; then
@@ -78,11 +79,13 @@ jobs:
             </url>
           </urlset>
           XML
+          mkdir -p pages-dist
+          cp -R "$OUT"/. pages-dist/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.pages.outputs.base_path == '/' && 'dist/client' || '.output/public' }}
+          path: pages-dist
 
   deploy:
     needs: build
