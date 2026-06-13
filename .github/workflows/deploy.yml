@@ -45,7 +45,15 @@ jobs:
       - name: Prepare static output for GitHub Pages
         run: |
           set -euo pipefail
-          OUT=.output/public
+          if [ -d .output/public ]; then
+            OUT=.output/public
+          elif [ -d dist/client ]; then
+            OUT=dist/client
+          else
+            echo "No static output directory found" >&2
+            ls -la . >&2
+            exit 1
+          fi
           # GitHub Pages won't serve underscore-prefixed paths without this.
           touch "$OUT/.nojekyll"
           # TanStack Start SPA mode emits the shell at _shell.html. Use it as
@@ -60,11 +68,21 @@ jobs:
             ls -la "$OUT" >&2
             exit 1
           fi
+          cat > "$OUT/sitemap.xml" <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+              <loc>${{ steps.pages.outputs.base_url }}/</loc>
+              <changefreq>weekly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          </urlset>
+          XML
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: ${{ steps.pages.outputs.base_path == '/' && 'dist/client' || '.output/public' }}
 
   deploy:
     needs: build
