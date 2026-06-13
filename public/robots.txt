@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://iperialuat1.lovable.app/sitemap.xml
+Sitemap: /sitemap.xml

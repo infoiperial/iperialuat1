@@ -38,6 +38,7 @@ jobs:
           # Pages serves project sites under /<repo>/. configure-pages exposes the
           # correct base path (e.g. "/my-repo/") via steps.pages.outputs.base_path.
           # For user/org sites (<user>.github.io) or custom domains it is "/".
+          NITRO_PRESET: static
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: bun run build
 
