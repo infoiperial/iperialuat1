@@ -57,15 +57,11 @@ jobs:
           fi
           # GitHub Pages won't serve underscore-prefixed paths without this.
           touch "$OUT/.nojekyll"
-          # TanStack Start SPA mode emits the shell at _shell.html. Use it as
-          # both the index and the 404 fallback so deep links resolve client-side.
-          if [ -f "$OUT/_shell.html" ]; then
-            cp "$OUT/_shell.html" "$OUT/index.html"
-            cp "$OUT/_shell.html" "$OUT/404.html"
-          elif [ -f "$OUT/index.html" ]; then
+          # Ensure GitHub Pages has a fallback page for unknown paths.
+          if [ -f "$OUT/index.html" ]; then
             cp "$OUT/index.html" "$OUT/404.html"
           else
-            echo "No shell or index.html produced under $OUT" >&2
+            echo "No index.html produced under $OUT" >&2
             ls -la "$OUT" >&2
             exit 1
           fi
