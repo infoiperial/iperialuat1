@@ -31,11 +31,13 @@ export default defineConfig({
         }
       : {}),
   },
-  nitro: {
-    // GitHub Actions explicitly sets NITRO_PRESET=static in the Pages workflow.
-    // Outside that workflow we still default to a static preset for self-hosted static builds.
-    preset: process.env.NITRO_PRESET || "static",
-  },
+  // Lovable preview/publish needs the deploy plugin; GitHub Pages does not.
+  // Disabling Nitro outside Lovable avoids the failing SSR build stage in Actions.
+  nitro: isLovableSandbox
+    ? {
+        preset: process.env.NITRO_PRESET || "static",
+      }
+    : false,
   vite: {
     // GitHub Actions sets BASE_PATH=/<repo>/ for project sites. Defaults to "/"
     // so user/org sites and custom domains work out of the box. This value is
