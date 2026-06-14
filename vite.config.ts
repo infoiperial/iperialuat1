@@ -12,20 +12,24 @@ const isLovableSandbox =
 // When this build runs INSIDE a Lovable sandbox (preview/publish), the wrapper
 // forces preset=cloudflare-module regardless of what we pass here.
 // When the build runs OUTSIDE Lovable (e.g. GitHub Actions for GitHub Pages),
-// the `nitro.preset = "static"` below is honored and Nitro emits a fully
-// static site under `.output/public/`. We then run TanStack Start in SPA mode
-// (`spa.enabled = true`) so a single shell HTML handles all client routes —
-// the workflow copies it to `index.html` + `404.html` for GitHub Pages.
+// the `nitro.preset = "static"` below is honored and Nitro emits a static site
+// under `.output/public/`. For GitHub Pages we use prerendered HTML instead of
+// TanStack Start's SPA shell mode, which avoids Vite's SSR/html input conflict.
 export default defineConfig({
   tanstackStart: {
     // Keep the custom SSR error wrapper for Lovable preview/publish builds only.
     // For GitHub Pages static exports, TanStack's default server entry is required
     // so the prerender step can resolve the expected server bundle correctly.
     ...(isLovableSandbox ? { server: { entry: "server" } } : {}),
-    // SPA shell — renders the router pending fallback into a single static HTML file.
-    spa: {
-      enabled: true,
-    },
+    ...(!isLovableSandbox
+      ? {
+          prerender: {
+            enabled: true,
+            crawlLinks: true,
+            failOnError: true,
+          },
+        }
+      : {}),
   },
   nitro: {
     // GitHub Actions explicitly sets NITRO_PRESET=static in the Pages workflow.
