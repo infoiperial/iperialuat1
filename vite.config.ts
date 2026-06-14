@@ -6,6 +6,9 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const isLovableSandbox =
+  process.env.LOVABLE_SANDBOX === "1" || !!process.env.DEV_SERVER__PROJECT_PATH;
+
 // When this build runs INSIDE a Lovable sandbox (preview/publish), the wrapper
 // forces preset=cloudflare-module regardless of what we pass here.
 // When the build runs OUTSIDE Lovable (e.g. GitHub Actions for GitHub Pages),
@@ -15,8 +18,10 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // the workflow copies it to `index.html` + `404.html` for GitHub Pages.
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    server: { entry: "server" },
+    // Keep the custom SSR error wrapper for Lovable preview/publish builds only.
+    // For GitHub Pages static exports, TanStack's default server entry is required
+    // so the prerender step can resolve the expected server bundle correctly.
+    ...(isLovableSandbox ? { server: { entry: "server" } } : {}),
     // SPA shell — renders the router pending fallback into a single static HTML file.
     spa: {
       enabled: true,
