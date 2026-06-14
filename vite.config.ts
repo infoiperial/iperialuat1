@@ -6,27 +6,38 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const isLovableSandbox =
+  process.env.LOVABLE_SANDBOX === "1" || !!process.env.DEV_SERVER__PROJECT_PATH;
+
 // When this build runs INSIDE a Lovable sandbox (preview/publish), the wrapper
 // forces preset=cloudflare-module regardless of what we pass here.
 // When the build runs OUTSIDE Lovable (e.g. GitHub Actions for GitHub Pages),
-// the `nitro.preset = "static"` below is honored and Nitro emits a fully
-// static site under `.output/public/`. We then run TanStack Start in SPA mode
-// (`spa.enabled = true`) so a single shell HTML handles all client routes —
-// the workflow copies it to `index.html` + `404.html` for GitHub Pages.
+// the `nitro.preset = "static"` below is honored and Nitro emits a static site
+// under `.output/public/`. For GitHub Pages we use prerendered HTML instead of
+// TanStack Start's SPA shell mode, which avoids Vite's SSR/html input conflict.
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    server: { entry: "server" },
-    // SPA shell — renders the router pending fallback into a single static HTML file.
-    spa: {
-      enabled: true,
-    },
+    // Keep the custom SSR error wrapper for Lovable preview/publish builds only.
+    // For GitHub Pages static exports, TanStack's default server entry is required
+    // so the prerender step can resolve the expected server bundle correctly.
+    ...(isLovableSandbox ? { server: { entry: "server" } } : {}),
+    ...(!isLovableSandbox
+      ? {
+          prerender: {
+            enabled: true,
+            crawlLinks: true,
+            failOnError: true,
+          },
+        }
+      : {}),
   },
-  nitro: {
-    // GitHub Actions explicitly sets NITRO_PRESET=static in the Pages workflow.
-    // Outside that workflow we still default to a static preset for self-hosted static builds.
-    preset: process.env.NITRO_PRESET || "static",
-  },
+  // Lovable preview/publish needs the deploy plugin; GitHub Pages does not.
+  // Disabling Nitro outside Lovable avoids the failing SSR build stage in Actions.
+  nitro: isLovableSandbox
+    ? {
+        preset: process.env.NITRO_PRESET || "static",
+      }
+    : false,
   vite: {
     // GitHub Actions sets BASE_PATH=/<repo>/ for project sites. Defaults to "/"
     // so user/org sites and custom domains work out of the box. This value is
