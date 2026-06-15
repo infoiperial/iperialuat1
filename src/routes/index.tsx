@@ -23,7 +23,8 @@ import infraImg from "@/assets/infrastructure.jpg";
 import cloudImg from "@/assets/cloud.jpg";
 import supportImg from "@/assets/support.jpg";
 import marketingImg from "@/assets/digital-marketing.jpg";
-const logoImg = "/iperial-logo.png";
+import logoAsset from "@/assets/iperial-logo.png";
+const logoImg = logoAsset.url;
 
 export const Route = createFileRoute("/")({
   component: HomePage,
