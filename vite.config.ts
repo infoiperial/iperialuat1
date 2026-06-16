@@ -42,6 +42,6 @@ export default defineConfig({
     // GitHub Actions sets BASE_PATH=/<repo>/ for project sites. Defaults to "/"
     // so user/org sites and custom domains work out of the box. This value is
     // also exposed to the router via import.meta.env.BASE_URL (see src/router.tsx).
-    base: process.env.BASE_PATH || "/",
+    base: "/",
   },
 });
