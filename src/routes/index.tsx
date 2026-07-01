@@ -187,7 +187,7 @@ function HomePage() {
           {/* Infrastructure */}
           <ServiceBlock
             number="01"
-            tag="Infrastructure & Hardware"
+            tag="INFRASTRUCTURE & HARDWARE"
             title="The backbone of your business."
             image={infraImg}
             imageAlt="Modern data center server racks"
