@@ -68,16 +68,7 @@ jobs:
             ls -la "$OUT" >&2
             exit 1
           fi
-          cat > "$OUT/sitemap.xml" <<'XML'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            <url>
-              <loc>${{ steps.pages.outputs.base_url }}/</loc>
-              <changefreq>weekly</changefreq>
-              <priority>1.0</priority>
-            </url>
-          </urlset>
-          XML
+          # sitemap.xml and robots.txt are shipped from public/ — do not overwrite here.
           mkdir -p pages-dist
           cp -R "$OUT"/. pages-dist/
 
