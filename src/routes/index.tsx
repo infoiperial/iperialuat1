@@ -368,7 +368,7 @@ function ServiceBlock({
             </div>
           </div>
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.46_0.18_248)]">{tag}</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[oklch(0.46_0.18_248)]">{tag}</p>
             <h3 className="mt-2 font-[Space_Grotesk] text-3xl font-bold tracking-tight md:text-4xl">{title}</h3>
           </div>
         </div>
