@@ -1,46 +1,36 @@
-## A5 Leaflet Design — Iperial Technology Solutions
+## Leaflet v3 — Rebalanced palette
 
-Create a print-ready **A5 leaflet PDF** (148 × 210 mm) that mirrors the website's aesthetic: deep navy background, cyan/blue gradient accents, Space Grotesk headings + Inter body, and the Iperial logo.
+Redo the A5 leaflet so the colour balance mirrors the website: deep navy as the dominant surface, blue/cyan gradient accents, and black used only as accent panels/dividers — not as the base.
 
-### Format
-- **Size:** A5 portrait, double-sided (2 pages in one PDF)
-- **Output:** `/mnt/documents/iperial-leaflet.pdf` (delivered as a downloadable artifact)
-- **Bleed/margins:** 5mm safe margin from edges, print-ready
+### Palette shift
+- **Base surface:** deep navy `#0F1830` (from site hero), not pure black
+- **Panels / cards:** slightly lighter navy `#162445` with subtle blue borders
+- **Accents:** cyan `#4FB8E6` + gradient blue `#3B6BE0` (unchanged)
+- **Black `#07090F`:** used only for the bottom stat strip on the cover and the top header band on page 2 — as accent bands, not full backgrounds
+- **Grid overlay:** subtle blue-tinted, not white
 
-### Page 1 — Front / Cover
-- Full-bleed navy gradient background (matching hero section)
-- Iperial logo top-left
-- Large Space Grotesk headline: **"Dependable IT, built around you."**
-- Subline: "Helping small businesses and individuals with their technology."
-- Small tagline chip: "Technology Solutions"
-- Stat strip at bottom: **10+ Years · 24/7 Response · UK-wide**
+### Page 1 — Cover
+- Full-bleed **navy → deeper navy** vertical gradient (no black base)
+- Faint blue grid overlay across the whole page
+- Prominent Iperial logo centered upper-third (keep ~120pt height)
+- Large headline + cyan underline + subline (unchanged copy)
+- **Black accent strip** at the very bottom (~70pt tall) holding the stat trio (10+ Years · 24/7 · UK) — this is where black lives
+- Cyan hairline separating navy from the black strip
 
 ### Page 2 — Services + Contact
-Compact, scannable layout listing the four core service pillars with 2–3 bullet items each:
+- Navy base background (not black)
+- **Black header band** at top (~92pt) with prominent white Iperial logo left + "OUR SERVICES" right — black used as accent band
+- Four service cards on navy background, cards themselves lighter navy `#162445` with thin blue border and cyan left accent bar
+- **Black footer band** (~150pt) for contact — this is the second place black appears, giving symmetry with the cover
+- Large faded Iperial logo watermark inside the footer (right side)
+- Contact rows unchanged: Call / WhatsApp · 07731 552882, Email, Web, Location
 
-1. **Infrastructure & Hardware** — Servers, networking, Wi-Fi, firewalls, devices
-2. **Cloud Systems Management** — Cloud migration, M365 & Google Workspace, hybrid setups
-3. **IT Support** — Remote & on-site, user accounts, hardware/software troubleshooting
-4. **Digital Marketing** — SEO, graphics & video, social media
+### Keep
+- Logo prominence on both pages (cover hero logo + page 2 header logo + footer watermark)
+- "Call / WhatsApp — 07731 552882" (WhatsApp URL removed)
+- Space Grotesk / Inter typography
+- Same copy throughout
 
-Each pillar shown as a card with a small gradient icon circle (matching the site cards).
-
-Bottom contact bar:
-- 🌐 www.iperial.com
-- ✉ info@iperial.com
-- 📞 07731 552882
-- 💬 WhatsApp: wa.me/447731552882
-- 📍 Surrey, UK
-
-### Technical approach
-- Generate with **ReportLab** (Python) for precise A5 print sizing and typography control
-- Use Space Grotesk (headings) and Inter (body) from Google Fonts, downloaded at build time
-- Colors sampled from the site's OKLCH tokens, converted to hex for print (navy `#131F3D`, cyan accent `#4FB8E6`, gradient blue `#3B6BE0`)
-- Embed the existing project logo (`src/assets/iperial-logo.png`)
-- Run visual QA: render each page to JPG at 150 DPI, inspect for overflow / alignment / contrast, iterate until clean
-- Deliver via `<presentation-artifact>` tag
-
-### Out of scope
-- Not adding leaflet to the website
-- Not creating multiple design variations (one polished version)
-- No print-shop specifics (CMYK conversion) unless you request it — output will be standard RGB PDF suitable for both digital sharing and most home/office printing
+### Output
+- `/mnt/documents/iperial-leaflet_v3.pdf` (new versioned file, v2 preserved)
+- Render both pages to JPG at 130 DPI and visually QA before delivery
